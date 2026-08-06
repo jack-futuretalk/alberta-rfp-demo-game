@@ -16,6 +16,8 @@ The choice is remembered in `localStorage` for the next visit.
 
 **Live demo (GitHub Pages):** https://jack-futuretalk.github.io/alberta-rfp-demo-game/
 
+Deploys automatically from `main` (repo root). Push to update the shared link.
+
 ## Run locally
 
 Serve the folder over HTTP (fetch needs it for the JSON data files):
