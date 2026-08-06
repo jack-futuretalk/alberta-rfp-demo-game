@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "lang": "en",
+    "title": "Advertisement Claim Checker"
+  },
+  "intro": {
+    "eyebrow": "Alberta PEW 8 · Food Literacy",
+    "heading": "Advertisement Claim Checker",
+    "lead": "Put it on the board. The class votes. The teacher clicks the majority choice. This activity practices two Grade 8 food-literacy skills: identifying credible nutrition sources, and considering how advertising and social media shape food choices. For each ad, decide:",
+    "options": [
+      "Is this claim backed by evidence?",
+      "Is it not backed by evidence?",
+      "Or does this ad not actually make a claim at all?"
+    ],
+    "trapNote": "That third option matters. Soft sell ads, and a lot of social media food marketing, build a feeling about a brand without saying anything you could check. Health claims on packaging and diet trends online can include misinformation. Wrong votes stay on the ad so the class can try again, the reveal only unlocks when you land on the right answer.",
+    "startLabel": "Start Advertisement Claim Checker",
+    "draftBanner": "Draft content, replace with MediaSmarts fact-checked ads before demo day."
+  },
+  "round": {
+    "progress": "Round {current} of {total}",
+    "prompt": "Class vote, what is true of this ad?",
+    "tryAgain": "Not that one. Discuss and vote again.",
+    "choices": {
+      "backed": "Backed by evidence",
+      "notBacked": "Not backed by evidence",
+      "noClaim": "No actual claim made"
+    }
+  },
+  "reveal": {
+    "classAnswer": "Class answer",
+    "feeling": "Feeling the ad sells",
+    "literalClaim": "What the ad literally claims",
+    "evidence": "What a credible source says",
+    "technique": "Technique used",
+    "verify": "Where to verify",
+    "correct": "That's the one!",
+    "continue": "Next ad",
+    "finish": "See results"
+  },
+  "techniques": {
+    "productPlacement": "Product placement",
+    "endorsement": "Endorsement",
+    "identityEmotion": "Identity and emotion",
+    "parody": "Parody",
+    "hardSell": "Hard sell (direct claim)"
+  },
+  "answers": {
+    "backed": "Backed by evidence",
+    "notBacked": "Not backed by evidence",
+    "noClaim": "No actual claim made"
+  },
+  "results": {
+    "heading": "Round complete",
+    "score": "The class got it on the first vote for {correct} of {total} ads.",
+    "softSellNote": "Food literacy outcome: advertising and social media can steer food choices, sometimes with no claim, sometimes with misinformation. Prefer registered dietitians and government or public health agencies over brand voice. Use Nutrition Facts tables (and serving size) to check calories, sugar, sodium, and nutrients. Adolescence is a growth window, including extra need for calcium and vitamin D for bone growth, which is why youth-targeted marketing is worth questioning.",
+    "breakdownHeading": "First votes",
+    "replay": "Play again",
+    "match": "First try",
+    "miss": "Retried"
+  },
+  "a11y": {
+    "skipToGame": "Skip to game",
+    "adCardLabel": "Advertisement",
+    "choiceGroupLabel": "Choose one response",
+    "revealRegion": "Answer reveal",
+    "wrongChoice": "Incorrect. That option is unavailable. Vote again."
+  }
+}

@@ -1,0 +1,70 @@
+Creative Brief — Alberta CLTR Demo Module — Jack (Front-End & Game Build)
+Due Date: Claim Checker built and SCORM-packaged Saturday August 8. Integrated into the micro-site Sunday August 9. Demo Tuesday August 11.
+Time Spent: Full-time, August 5-9.
+Project Summary
+You are building the interactive activity at the centre of a demo for Alberta Education and Childcare — a mandatory one-hour demonstration against an $846,387 contract. The Ministry has said explicitly that they will use the hour to validate what we claimed in writing, and one of their four stated areas of focus is how the resource is accessed and whether it is compatible with their platform.
+That makes your build load-bearing. A polished activity that visibly loads as a SCORM package in a real LMS answers their question directly. A beautiful thing that cannot be packaged does not.
+The activity is called Claim Checker. Students judge food and wellness advertising claims — and the design has a trap in it that is the whole pedagogical point.
+Additional Context
+The module adapts a MediaSmarts lesson about soft sell advertising: ads that build affection for a brand without making any claim you could check. Four techniques — product placement, endorsement, identity and emotion, parody.
+The trap: most soft-sell food ads never say anything checkable at all. So Claim Checker gives students THREE buttons, not two. Students who reflex-click true-or-false get caught, and the misconception surfaces itself. That third option is why this is a teaching activity and not a quiz, and it is what makes it faithful to MediaSmarts' pedagogy — which matters, because Matthew Johnson from MediaSmarts will be in the room watching it run.
+Ian owns back end, hosting and data residency. You own everything the student clicks.
+Background Details
+Client: Alberta Education and Childcare — RFP No. ECC-26-02, Comprehensive Learning and Teaching Resources, Grades 7-9 Physical Education and Wellness. Consortium: Thought Cafe (Prime Vendor) with MediaSmarts / HabiloMedias (Content Partner).
+Timeline: Spec confirmed with Ian Tuesday August 5. Build through the week. Complete and SCORM-packaged Saturday August 8. Integrated Sunday August 9. Run-through Sunday, second Monday August 10.
+Expectations: It runs, it packages, it is accessible, and it looks like us. In that order of priority — but all four.
+Add Your Own: You and Ian jointly own the H5P versus custom HTML decision, and it needs to be made Tuesday. See Instructions.
+Instructions
+BUILD: Claim Checker. 8 to 10 rounds. Each round presents one food or wellness claim styled as an ad card.
+Three response buttons:
+•  Backed by evidence
+•  Not backed by evidence
+•  No actual claim made  <- the soft-sell trap, and the reason this activity exists
+After each round, a reveal panel showing: what the ad literally claims, what the evidence actually says, which of the four techniques was used, and where a student could go to verify it themselves.
+Scoring on accuracy plus technique identification. Playable solo or facilitated with a class.
+TECHNOLOGY DECISION — yours and Ian's, due Tuesday August 5:
+•  H5P: native SCORM export, accessibility largely handled, fast. But it has a recognisable look that may undercut the 'beautifully animated' positioning we sold in the proposal.
+•  Custom HTML: looks like us, fully controllable, vibe-codeable. Needs a SCORM 1.2 manifest and API wrapper to be demonstrable in an LMS.
+•  Recommendation: custom HTML with a SCORM wrapper IF you are confident by Tuesday. H5P as the de-risked fallback. Make the call early — do not discover on Friday that packaging does not work.
+•  Whichever you pick, the deliverable is a SCORM 1.2 package that visibly loads in a real LMS on camera. Coordinate with Ian on which LMS we can actually load into by August 9.
+HARD REQUIREMENTS:
+•  No login. No account creation. No personal information collected, transmitted or stored — at all, anywhere. We made this claim in Question 4 of our proposal against Alberta's Protection of Privacy Act, and it will be probed. If SCORM completion tracking is enabled, it captures anonymous completion state only and is never associated with an identifiable individual.
+•  WCAG 2.0 AA minimum. Full keyboard navigation — every round completable without a mouse. Screen-reader compatible, tested on NVDA and VoiceOver. 4.5:1 contrast minimum. Never rely on colour alone to convey meaning.
+•  Bilingual. All strings externalised so French can be dropped in without touching logic. Assume French text runs 20-30% longer than English and do not let it break your layouts.
+•  Works on desktop, laptop, tablet and phone. Touch-friendly targets. No plugins, no proprietary players, HTML5 only.
+•  Every claim in the game must be factually real and verifiable. Thought Cafe drafts the content, MediaSmarts fact-checks it. Do not invent placeholder claims and forget to swap them — a wrong fact inside a lesson about wrong facts ends the meeting.
+Build three knowledge checks for the micro-site as well: embedded at act breaks, instant feedback with a real explanation rather than just right or wrong. Results not stored at the content layer.
+Resources
+Source lesson: Marketing to Teens: Alternate Ads (MediaSmarts, 2022) — mediasmarts.ca/lessonplan/marketing-teens-alternate-ads-lesson
+Draft Alberta PEW 7-9 curriculum, June 2026 — filed as Physical Education and Wellness (7-9)-2026-08-04.pdf
+Our submission: Thought_Cafe_MediaSmarts_Proposal_RFP_ECC-26-02_Attachment_3_PEW.docx
+The RFP itself: AB-2026-04066-RFP No. ECC-26-02
+Master creative and technical brief: CREATIVE-BRIEF-demo-module.md
+MediaSmarts library audit: MediaSmarts-library-audit.md
+All of the above are in the shared folder: ventures/learning-modules/sources/alberta-rfp-ecc-26-02/
+SCORM 1.2 and SCORM 2004 spec — we committed to both in Question 4, plus xAPI as an option. For the demo, 1.2 is enough.
+Named LMS targets from our proposal: D2L Brightspace, Instructure Canvas, Moodle, Schoology, Google Classroom.
+Inspiration
+The three-button mechanic is the design. Resist any pressure to simplify it to true/false — the third option IS the lesson.
+MediaSmarts' own educational games are worth twenty minutes of your time for tone and pacing with this age group: #ForYou: A Game About Algorithms, and A Day in the Life of the Jos (mediasmarts.ca/digital-media-literacy/educational-games).
+Reveal panels should feel like a satisfying unmasking, not a report card. The student just got fooled by an ad — make discovering that fun rather than punitive.
+Art Direction
+Visual system comes from Suz. The four techniques will have a consistent visual signature across video, game, 360 and print — use hers, do not invent a parallel one.
+Ad cards should look like real, appealing advertising before the reveal. If the fake ads look fake, the activity does not work.
+Feedback states need to read instantly at screen-share resolution on a Teams call — assume compression and a small window.
+Point People
+•  Suz: Creative Director and micro-site author. Owns the entire creative scope and manages delivery across all components. Approves all creative versions.
+•  Jack: Front-end development and the Claim Checker game build. Owns anything the student clicks.
+•  Ian: Technical Director, back end. Owns SCORM packaging, hosting, data residency, NLA integration and accessibility verification.
+•  Tia / Julia: Production oversight. Schedule, resourcing, budget, and the go / no-go call on scope cuts.
+•  Jon Corbiere: Strategy, IP and commercial. Final call on curriculum positioning and what we claim.
+•  Cole: ALL client engagement. Any question, clarification or request that would go to Alberta Education and Childcare routes through Cole. Nobody contacts the Ministry directly — this is a live procurement and unsanctioned contact can disqualify us (RFP s.4.6).
+•  Matthew Johnson (MediaSmarts): Curriculum authority, lesson re-mapping, and fact-check on all nutrition content.
+Deliverable & Formats
+Claim Checker: SCORM 1.2 package (.zip) plus a hosted browser version.
+•  8-10 rounds, English, with all strings externalised for French
+•  Reveal panel per round
+•  Keyboard-navigable and screen-reader tested
+•  Three embedded knowledge checks for the micro-site
+•  A short written note for Ian on how the package is structured, so he can speak to it on the call if asked
+Also deliver: a one-paragraph plain-English explanation of how the packaging works. Ian is presenting, and Jon needs to understand it well enough not to contradict him.

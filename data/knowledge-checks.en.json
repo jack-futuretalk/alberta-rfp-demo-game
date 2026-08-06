@@ -1,0 +1,85 @@
+{
+  "_note": "DRAFT knowledge checks for microsite act breaks (from Food Literacy Through Advertising Analysis, 2026-08-05). Author notes quizzes will be amended, treat as placeholders for embedding, not final copy.",
+  "checks": [
+    {
+      "id": "kc1",
+      "section": "Hard Sell vs. Soft Sell",
+      "prompt": "A food advertisement showing bright colours, upbeat music, and friends laughing together is an example of a soft sell technique because it subtly creates a positive mood instead of making direct claims about the product’s nutrition.",
+      "type": "trueFalse",
+      "answer": true,
+      "explanation": "Soft sell builds a feeling about a brand (mood, friendship, energy) rather than stating checkable product facts."
+    },
+    {
+      "id": "kc2",
+      "section": "The Four Soft-Sell Techniques",
+      "prompt": "In food advertising, a hard sell usually hints at a lifestyle or feeling without giving clear product facts, while a soft sell uses direct claims like prices or “buy now.”",
+      "type": "trueFalse",
+      "answer": false,
+      "explanation": "It's the other way around: hard sell uses direct claims; soft sell hints at lifestyle or feeling without clear product facts."
+    },
+    {
+      "id": "kc3",
+      "section": "Identifying Credible Sources",
+      "prompt": "A soft sell food advertisement usually relies on feelings, images, or a short story, such as happy friends or bright colours, rather than direct claims like low price or extra protein, which are more typical of a hard sell ad.",
+      "type": "trueFalse",
+      "answer": true,
+      "explanation": "Feelings and imagery are soft sell; price and specific nutrient claims are more typical hard sell moves."
+    },
+    {
+      "id": "kc4",
+      "section": "Growth and Development",
+      "prompt": "A Nutrition Facts table and ingredient list are more credible sources than a food advertisement’s claims when you want to check whether a product is actually healthy and supports growth and development.",
+      "type": "trueFalse",
+      "answer": true,
+      "explanation": "Alberta PEW 8: prefer registered dietitians and government or public health agencies, and use Nutrition Facts tables (serving size matters) over brand ads."
+    },
+    {
+      "id": "kc5",
+      "section": "Alternate Ad Audit",
+      "prompt": "A food ad that shows a laughing family in a bright kitchen and uses words like “fresh” or “made for good moments” is using a hard sell technique because it gives clear nutrition facts.",
+      "type": "trueFalse",
+      "answer": false,
+      "explanation": "Mood words and lifestyle scenes without clear nutrition facts are soft sell (identity and emotion), not hard sell."
+    },
+    {
+      "id": "kc6",
+      "section": "Alberta PEW 8 · Credible sources",
+      "prompt": "Nutritional information is more reliable when it comes from a brand’s social media account than from a registered dietitian or a government / public health agency.",
+      "type": "trueFalse",
+      "answer": false,
+      "explanation": "Curriculum knowledge: credible sources include registered dietitians and government or public health agencies, not commercial brand marketing."
+    },
+    {
+      "id": "kc7",
+      "section": "Alberta PEW 8 · Advertising & growth",
+      "prompt": "Marketing that targets youth and health claims on packaging can influence food choices, and adolescents have higher needs for nutrients such as calcium and vitamin D to support bone growth.",
+      "type": "trueFalse",
+      "answer": true,
+      "explanation": "Both are Grade 8 food-literacy knowledge points: advertising influence plus changing nutritional requirements in adolescence."
+    }
+  ],
+  "credibilityCriteria": [
+    "Registered dietitians and government or public health agencies (Alberta PEW 8)",
+    "Free of a commercial motive to sell a specific product",
+    "Consistent with other credible sources, not a lone outlier",
+    "Cites evidence rather than testimonials or before/after stories",
+    "Nutrition Facts tables (watch serving size) for calories, fat, sugar, sodium, and nutrients"
+  ],
+  "albertaPew8": {
+    "organizingIdea": "Food Literacy: A lifetime of optimal well-being and physical wellness is supported by prioritizing nutrition and food literacy.",
+    "guidingQuestion": "How can food literacy support nutrition and well-being?",
+    "learningOutcome": "Students explore connections between food literacy and health and nutrition.",
+    "skillsPracticedInGame": [
+      "Identify credible sources for nutritional information",
+      "Explore ways nutrition supports growth and development",
+      "Consider the role of social media and advertising in food choice"
+    ],
+    "outOfScopeForThisGame": [
+      "Food safety and spoilage practices",
+      "Natural vs artificial additives",
+      "Processed foods vs whole foods from the land",
+      "Cultural influences on food choices",
+      "Cost / convenience / availability trade-offs (except as later lesson extension)"
+    ]
+  }
+}
