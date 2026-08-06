@@ -1,0 +1,670 @@
+/* Theme tokens + look overrides. Switch with data-theme on <html>. */
+
+:root,
+[data-theme="instagram"] {
+  --ink: #262626;
+  --ink-muted: #8e8e8e;
+  --paper: #fafafa;
+  --paper-2: #efefef;
+  --panel: #ffffff;
+  --accent: #e1306c;
+  --teal: #0095f6;
+  --teal-hover: #0077c8;
+  --teal-soft: #e8f5fe;
+  --ok: #0095f6;
+  --miss: #ed4956;
+  --border: #dbdbdb;
+  --shadow: 0 0 0 1px var(--border);
+  --radius: 12px;
+  --font-display: "Instagram Sans Fallback", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --focus: 0 0 0 3px #fff, 0 0 0 5px var(--teal);
+  --page-bg: #fafafa;
+  --ad-radius: 0;
+  --btn-radius: 8px;
+  --choice-radius: 8px;
+}
+
+[data-theme="tiktok"] {
+  --ink: #f1f1f2;
+  --ink-muted: #a8a8b3;
+  --paper: #010101;
+  --paper-2: #1a1a1a;
+  --panel: #121212;
+  --accent: #fe2c55;
+  --teal: #25f4ee;
+  --teal-hover: #1ad4cf;
+  --teal-soft: rgba(37, 244, 238, 0.12);
+  --ok: #25f4ee;
+  --miss: #fe2c55;
+  --border: rgba(255, 255, 255, 0.12);
+  --shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 50px rgba(0, 0, 0, 0.55);
+  --radius: 14px;
+  --font-display: "Oswald", Impact, sans-serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+  --focus: 0 0 0 3px #121212, 0 0 0 5px var(--teal);
+  --page-bg: #010101;
+  --ad-radius: 12px;
+  --btn-radius: 999px;
+  --choice-radius: 12px;
+}
+
+[data-theme="skeuo"] {
+  --ink: #2a2118;
+  --ink-muted: #6b5a48;
+  --paper: #c4a574;
+  --paper-2: #b8956a;
+  --panel: #f3e6c8;
+  --accent: #8b4513;
+  --teal: #2f6b4f;
+  --teal-hover: #24553e;
+  --teal-soft: #d5e8dc;
+  --ok: #2f6b4f;
+  --miss: #9b2c2c;
+  --border: rgba(60, 40, 20, 0.28);
+  --shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 1px 0 rgba(0, 0, 0, 0.12),
+    0 10px 24px rgba(50, 30, 10, 0.28);
+  --radius: 10px;
+  --font-display: "Libre Baskerville", Georgia, serif;
+  --font-body: "Nunito", "Segoe UI", sans-serif;
+  --focus: 0 0 0 3px #f3e6c8, 0 0 0 6px #2f6b4f;
+  --page-bg: #c4a574;
+  --ad-radius: 6px;
+  --btn-radius: 10px;
+  --choice-radius: 10px;
+}
+
+/* Shared theme switcher */
+.theme-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.theme-switcher-label {
+  margin: 0 0.35rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+
+.theme-option {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 2rem;
+}
+
+.theme-option.is-active {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+}
+
+[data-theme="tiktok"] .theme-option.is-active {
+  color: #010101;
+}
+
+.theme-option:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+.site-header {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.header-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* ---------- Instagram ---------- */
+[data-theme="instagram"] body {
+  background: var(--page-bg);
+}
+
+[data-theme="instagram"] .page-bg {
+  background: #fafafa;
+}
+
+[data-theme="instagram"] .brand {
+  font-family: "Grand Hotel", cursive;
+  font-size: 1.65rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-theme="instagram"] .panel {
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid var(--border);
+}
+
+[data-theme="instagram"] .btn {
+  border-radius: var(--btn-radius);
+}
+
+[data-theme="instagram"] .btn-primary {
+  background: var(--teal);
+}
+
+[data-theme="instagram"] .btn-primary:hover {
+  background: var(--teal-hover);
+}
+
+[data-theme="instagram"] .btn-choice {
+  border-radius: var(--choice-radius);
+  border-width: 1px;
+  font-weight: 600;
+}
+
+[data-theme="instagram"] .round-ad .ad-shell {
+  margin: 0;
+}
+
+[data-theme="instagram"] .ad-shell {
+  margin: 1rem auto 0;
+  width: min(100%, 400px);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+[data-theme="instagram"] .ad-shell-compact {
+  width: min(100%, 200px);
+  margin: 0;
+}
+
+[data-theme="instagram"] .ig-chrome-top {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+[data-theme="instagram"] .ig-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+[data-theme="instagram"] .ig-avatar span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  background-image: radial-gradient(circle at 30% 30%, #ddd, #999);
+}
+
+[data-theme="instagram"] .ig-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+[data-theme="instagram"] .ig-user {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+[data-theme="instagram"] .ig-sub {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+}
+
+[data-theme="instagram"] .ig-more {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="instagram"] .ad-shell .ad-card {
+  margin: 0;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+[data-theme="instagram"] .ig-chrome-bottom {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0.85rem 0.35rem;
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
+[data-theme="instagram"] .ig-caption {
+  padding: 0 0.85rem 0.85rem;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+[data-theme="instagram"] .ig-caption strong {
+  font-weight: 700;
+}
+
+[data-theme="instagram"] .reveal-status {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  color: var(--ink-muted);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+[data-theme="instagram"] .answer-value {
+  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- TikTok ---------- */
+[data-theme="tiktok"] body {
+  background: var(--page-bg);
+  color: var(--ink);
+}
+
+[data-theme="tiktok"] .page-bg {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(254, 44, 85, 0.18), transparent 40%),
+    radial-gradient(circle at 85% 10%, rgba(37, 244, 238, 0.14), transparent 35%),
+    #010101;
+}
+
+[data-theme="tiktok"] .brand {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 1.05rem;
+}
+
+[data-theme="tiktok"] .panel {
+  background: rgba(18, 18, 18, 0.92);
+  border: 1px solid var(--border);
+}
+
+[data-theme="tiktok"] .draft-banner {
+  background: rgba(254, 44, 85, 0.15);
+  border-color: rgba(254, 44, 85, 0.45);
+  color: #ffb3c1;
+}
+
+[data-theme="tiktok"] .btn {
+  border-radius: var(--btn-radius);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.92rem;
+}
+
+[data-theme="tiktok"] .btn-primary {
+  background: linear-gradient(90deg, #25f4ee 0%, #25f4ee 35%, #fe2c55 65%, #fe2c55 100%);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="tiktok"] .btn-primary:hover {
+  filter: brightness(1.05);
+  background: linear-gradient(90deg, #25f4ee 0%, #25f4ee 35%, #fe2c55 65%, #fe2c55 100%);
+}
+
+[data-theme="tiktok"] .btn-choice {
+  background: #1c1c1c;
+  border-color: rgba(255, 255, 255, 0.14);
+  border-radius: var(--choice-radius);
+  color: var(--ink);
+}
+
+[data-theme="tiktok"] .btn-choice:hover:not(:disabled) {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  color: var(--ink);
+}
+
+[data-theme="tiktok"] .btn-choice.is-wrong,
+[data-theme="tiktok"] .btn-choice.is-wrong:disabled {
+  background: rgba(254, 44, 85, 0.18);
+  border-color: var(--miss);
+  color: #ff8da1;
+}
+
+[data-theme="tiktok"] .round-ad .ad-shell {
+  margin: 0;
+}
+
+[data-theme="tiktok"] .ad-shell {
+  margin: 1rem auto 0;
+  width: min(100%, 340px);
+  padding: 0.55rem;
+  border-radius: 28px;
+  background: #000;
+  border: 2px solid #2a2a2a;
+  box-shadow: 0 0 0 3px #111, 0 25px 50px rgba(0, 0, 0, 0.65);
+  position: relative;
+}
+
+[data-theme="tiktok"] .ad-shell-compact {
+  width: min(100%, 150px);
+  margin: 0;
+  padding: 0.35rem;
+  border-radius: 18px;
+}
+
+[data-theme="tiktok"] .tt-notch {
+  width: 28%;
+  height: 10px;
+  margin: 0.15rem auto 0.45rem;
+  background: #1a1a1a;
+  border-radius: 999px;
+}
+
+[data-theme="tiktok"] .ad-shell .ad-card {
+  margin: 0;
+  width: 100%;
+  border-radius: var(--ad-radius);
+  border: none;
+  box-shadow: none;
+}
+
+[data-theme="tiktok"] .tt-side-rail {
+  position: absolute;
+  right: 1rem;
+  bottom: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+[data-theme="tiktok"] .ad-shell-compact .tt-side-rail {
+  display: none;
+}
+
+[data-theme="tiktok"] .tt-rail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+[data-theme="tiktok"] .tt-rail-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
+}
+
+[data-theme="tiktok"] .tt-chrome-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.65rem 0.75rem 0.85rem;
+  color: #fff;
+}
+
+[data-theme="tiktok"] .tt-user {
+  margin: 0;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+[data-theme="tiktok"] .tt-sound {
+  margin: 0;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+[data-theme="tiktok"] .reveal-status {
+  color: var(--ink-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+[data-theme="tiktok"] .answer-value {
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="tiktok"] .reveal-item,
+[data-theme="tiktok"] .breakdown li {
+  background: #1a1a1a;
+}
+
+[data-theme="tiktok"] .badge-match {
+  background: rgba(37, 244, 238, 0.15);
+  color: var(--teal);
+}
+
+[data-theme="tiktok"] .badge-miss {
+  background: rgba(254, 44, 85, 0.18);
+  color: #ff8da1;
+}
+
+[data-theme="tiktok"] .trap-note {
+  background: rgba(254, 44, 85, 0.1);
+  border-left-color: var(--accent);
+}
+
+/* ---------- Skeuomorphic ---------- */
+[data-theme="skeuo"] body {
+  background: var(--page-bg);
+  color: var(--ink);
+}
+
+[data-theme="skeuo"] .page-bg {
+  background: #c4a574;
+  overflow: hidden;
+}
+
+[data-theme="skeuo"] .page-bg::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  background: url("../images/aisle-bg.png") center / cover no-repeat;
+  filter: blur(10px);
+  transform: scale(1.06);
+}
+
+[data-theme="skeuo"] .page-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(70, 48, 28, 0.28);
+}
+
+[data-theme="skeuo"] .brand {
+  font-family: var(--font-display);
+  color: #3b2a1a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="skeuo"] .panel {
+  background:
+    linear-gradient(180deg, #f7ecd2 0%, #efe0bc 100%);
+  border: 1px solid rgba(80, 50, 20, 0.35);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px rgba(90, 50, 20, 0.08),
+    0 14px 28px rgba(60, 35, 10, 0.28);
+}
+
+[data-theme="skeuo"] .draft-banner {
+  background: linear-gradient(180deg, #fff6d0, #f0dfa0);
+  border: 1px solid #c9a84a;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="skeuo"] .btn {
+  border-radius: var(--btn-radius);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 2px 0 rgba(0, 0, 0, 0.18),
+    0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="skeuo"] .btn-primary {
+  background: linear-gradient(180deg, #3f8a66 0%, #2f6b4f 55%, #24553e 100%);
+}
+
+[data-theme="skeuo"] .btn-primary:hover {
+  background: linear-gradient(180deg, #45956f 0%, #348059 55%, #2a6146 100%);
+}
+
+[data-theme="skeuo"] .btn:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.25),
+    0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="skeuo"] .btn-choice {
+  background: linear-gradient(180deg, #fffaf0 0%, #f0e2c4 100%);
+  border: 1px solid rgba(80, 50, 20, 0.3);
+  border-radius: var(--choice-radius);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 2px 3px rgba(60, 35, 10, 0.15);
+}
+
+[data-theme="skeuo"] .btn-choice:hover:not(:disabled) {
+  background: linear-gradient(180deg, #e8f5ee 0%, #d5e8dc 100%);
+  border-color: var(--teal);
+}
+
+[data-theme="skeuo"] .btn-choice.is-wrong,
+[data-theme="skeuo"] .btn-choice.is-wrong:disabled {
+  background: linear-gradient(180deg, #f8e0e0 0%, #e8c4c4 100%);
+}
+
+[data-theme="skeuo"] .round-ad .ad-shell {
+  margin: 0;
+}
+
+[data-theme="skeuo"] .ad-shell {
+  margin: 1.5rem auto 0;
+  width: min(100%, 380px);
+  padding: 1.1rem 1.1rem 1.35rem;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.2), transparent 45%),
+    linear-gradient(160deg, #b9895c 0%, #a87445 50%, #8f6238 100%);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 12px 24px rgba(50, 30, 10, 0.35);
+  position: relative;
+}
+
+[data-theme="skeuo"] .ad-shell-compact {
+  width: min(100%, 180px);
+  margin: 0;
+  padding: 0.7rem 0.7rem 0.9rem;
+}
+
+[data-theme="skeuo"] .skeuo-pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f7f7f7, #b0b0b0 45%, #666 80%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+[data-theme="skeuo"] .ad-shell .ad-card {
+  margin: 0;
+  width: 100%;
+  border-radius: var(--ad-radius);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5),
+    0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="skeuo"] .skeuo-tape {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 54px;
+  height: 16px;
+  background: rgba(255, 250, 200, 0.55);
+  border: 1px solid rgba(180, 150, 60, 0.35);
+  transform: rotate(12deg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+[data-theme="skeuo"] .ad-shell-compact .skeuo-tape {
+  width: 36px;
+  height: 12px;
+  top: 12px;
+  right: 10px;
+}
+
+[data-theme="skeuo"] .reveal-status {
+  color: var(--ink-muted);
+  text-shadow: none;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+[data-theme="skeuo"] .answer-value {
+  color: #2f6b4f;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="skeuo"] .reveal-item,
+[data-theme="skeuo"] .breakdown li {
+  background: linear-gradient(180deg, #fff8e8, #f2e4c4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="skeuo"] .trap-note {
+  background: rgba(139, 69, 19, 0.1);
+  border-left-color: #8b4513;
+}

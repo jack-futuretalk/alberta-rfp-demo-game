@@ -1,3 +1,5 @@
+import { getTheme, initThemeSwitcher } from "./theme.js";
+
 const CHOICE_KEYS = ["backed", "notBacked", "noClaim"];
 
 const state = {
@@ -54,6 +56,7 @@ function resetRoundVoteState() {
 
 function renderIntro() {
   setProgressVisible(false);
+  state.phase = "intro";
   const { intro } = state.ui;
   app.innerHTML = `
     <section class="panel" aria-labelledby="intro-heading">
@@ -70,7 +73,7 @@ function renderIntro() {
       </div>
     </section>
   `;
-  app.querySelector('[data-action="start"]').focus();
+  app.querySelector('[data-action="start"]').focus({ preventScroll: true });
 }
 
 function currentRound() {
@@ -87,26 +90,96 @@ function choiceButtonHtml(key, copy) {
     >${escapeHtml(copy.choices[key])}</button>`;
 }
 
+function brandHandle(brand) {
+  return brand
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "")
+    .slice(0, 18);
+}
+
+function wrapAdShell(round, cardHtml, { compact = false } = {}) {
+  const theme = getTheme();
+  const handle = brandHandle(round.brand);
+  const shellClass = compact ? "ad-shell ad-shell-compact" : "ad-shell";
+
+  if (theme === "instagram") {
+    const extras = compact
+      ? ""
+      : `<div class="ig-chrome-bottom" aria-hidden="true"><span>♡</span><span>💬</span><span>➢</span></div>
+         <p class="ig-caption"><strong>${escapeHtml(handle)}</strong> ${escapeHtml(round.tagline)}</p>`;
+    return `
+      <div class="${shellClass}">
+        <div class="ig-chrome-top">
+          <div class="ig-avatar" aria-hidden="true"><span></span></div>
+          <div class="ig-meta">
+            <p class="ig-user">${escapeHtml(handle)}</p>
+            <p class="ig-sub">${escapeHtml(round.format)}</p>
+          </div>
+          <span class="ig-more" aria-hidden="true">•••</span>
+        </div>
+        ${cardHtml}
+        ${extras}
+      </div>`;
+  }
+
+  if (theme === "tiktok") {
+    return `
+      <div class="${shellClass}">
+        <div class="tt-notch" aria-hidden="true"></div>
+        ${cardHtml}
+        <div class="tt-side-rail" aria-hidden="true">
+          <div class="tt-rail-item"><span class="tt-rail-icon">♥</span><span>24.2K</span></div>
+          <div class="tt-rail-item"><span class="tt-rail-icon">💬</span><span>812</span></div>
+          <div class="tt-rail-item"><span class="tt-rail-icon">↪</span><span>Share</span></div>
+        </div>
+        <div class="tt-chrome-bottom">
+          <p class="tt-user">@${escapeHtml(handle)}</p>
+          <p class="tt-sound">♪ original sound - ${escapeHtml(round.brand)}</p>
+        </div>
+      </div>`;
+  }
+
+  return `
+    <div class="${shellClass}">
+      <span class="skeuo-pin" aria-hidden="true"></span>
+      <span class="skeuo-tape" aria-hidden="true"></span>
+      ${cardHtml}
+    </div>`;
+}
+
 function adCardHtml(round, { compact = false, enter = false } = {}) {
   const { a11y } = state.ui;
   const classes = [
     "ad-card",
+    round.image ? "has-image" : "",
     compact ? "ad-card-compact" : "",
     enter ? "ad-card-enter" : "",
   ]
     .filter(Boolean)
     .join(" ");
 
-  const headline = round.headline
-    ? `<${compact ? "p" : "h2"} class="ad-headline">${escapeHtml(round.headline)}</${compact ? "p" : "h2"}>`
-    : "";
-  const body =
-    !compact && round.body
-      ? `<p class="ad-body">${escapeHtml(round.body)}</p>`
-      : "";
+  const alt = `${round.brand}. ${round.visual}`.trim();
 
-  return `
-    <article class="${classes}" aria-label="${escapeHtml(a11y.adCardLabel)}">
+  let cardInner;
+  if (round.image) {
+    cardInner = `
+      <img
+        class="ad-media"
+        src="${escapeHtml(round.image)}"
+        alt="${escapeHtml(alt)}"
+        width="360"
+        height="480"
+        decoding="async"
+      />`;
+  } else {
+    const headline = round.headline
+      ? `<${compact ? "p" : "h2"} class="ad-headline">${escapeHtml(round.headline)}</${compact ? "p" : "h2"}>`
+      : "";
+    const body =
+      !compact && round.body
+        ? `<p class="ad-body">${escapeHtml(round.body)}</p>`
+        : "";
+    cardInner = `
       <div class="ad-visual">
         <p class="ad-format">${escapeHtml(round.format)} · ${escapeHtml(round.brand)}</p>
         ${headline}
@@ -116,36 +189,70 @@ function adCardHtml(round, { compact = false, enter = false } = {}) {
       <div class="ad-footer">
         <span>${escapeHtml(round.tagline)}</span>
         <span aria-hidden="true">${escapeHtml(round.brand)}</span>
-      </div>
+      </div>`;
+  }
+
+  const card = `
+    <article class="${classes}" aria-label="${escapeHtml(a11y.adCardLabel)}">
+      ${cardInner}
     </article>`;
+
+  return wrapAdShell(round, card, { compact });
 }
 
-function renderRound() {
+function restoreRuledOutButtons() {
+  const { round: copy } = state.ui;
+  state.ruledOut.forEach((choice) => {
+    const button = app.querySelector(`[data-choice="${choice}"]`);
+    if (!button) return;
+    button.classList.add("is-wrong");
+    button.setAttribute("aria-pressed", "true");
+    button.disabled = true;
+  });
+  if (state.ruledOut.length > 0) {
+    const prompt = document.getElementById("round-prompt");
+    if (prompt) {
+      prompt.textContent = copy.tryAgain;
+      prompt.classList.add("is-retry");
+    }
+  }
+}
+
+function renderRound({ restoreVotes = false } = {}) {
   const round = currentRound();
   const { round: copy, a11y } = state.ui;
   setProgressVisible(true);
   state.phase = "choose";
 
   app.innerHTML = `
-    <section class="panel" aria-labelledby="round-prompt">
-      ${adCardHtml(round, { enter: true })}
-
-      <p class="prompt" id="round-prompt" role="status">${escapeHtml(copy.prompt)}</p>
-      <div class="choices" role="group" aria-label="${escapeHtml(a11y.choiceGroupLabel)}">
-        ${CHOICE_KEYS.map((key) => choiceButtonHtml(key, copy)).join("")}
+    <section class="panel panel-round" aria-labelledby="round-prompt">
+      <div class="round-layout">
+        <div class="round-ad">
+          ${adCardHtml(round, { enter: !restoreVotes })}
+        </div>
+        <div class="round-vote">
+          <p class="prompt" id="round-prompt" role="status">${escapeHtml(copy.prompt)}</p>
+          <div class="choices" role="group" aria-label="${escapeHtml(a11y.choiceGroupLabel)}">
+            ${CHOICE_KEYS.map((key) => choiceButtonHtml(key, copy)).join("")}
+          </div>
+        </div>
       </div>
       <p class="sr-only" id="wrong-alert" role="alert" aria-live="assertive"></p>
     </section>
   `;
 
-  const card = app.querySelector(".ad-card-enter");
-  card?.addEventListener(
-    "animationend",
-    () => card.classList.remove("ad-card-enter"),
-    { once: true }
-  );
+  if (restoreVotes) {
+    restoreRuledOutButtons();
+  } else {
+    const card = app.querySelector(".ad-card-enter");
+    card?.addEventListener(
+      "animationend",
+      () => card.classList.remove("ad-card-enter"),
+      { once: true }
+    );
+  }
 
-  app.querySelector(".btn-choice")?.focus();
+  app.querySelector(".btn-choice:not(:disabled)")?.focus({ preventScroll: true });
 }
 
 function markChoiceWrong(choice) {
@@ -166,14 +273,12 @@ function markChoiceWrong(choice) {
   const alert = document.getElementById("wrong-alert");
   if (alert) {
     alert.textContent = "";
-    // Force a change so screen readers re-announce on repeat misses.
     requestAnimationFrame(() => {
       alert.textContent = a11y.wrongChoice;
     });
   }
 
-  const nextFocus = app.querySelector(".btn-choice:not(:disabled)");
-  nextFocus?.focus();
+  app.querySelector(".btn-choice:not(:disabled)")?.focus({ preventScroll: true });
 }
 
 function renderReveal() {
@@ -186,49 +291,48 @@ function renderReveal() {
   const continueLabel = isLast ? reveal.finish : reveal.continue;
 
   app.innerHTML = `
-    <section class="panel reveal" aria-labelledby="reveal-status">
-      <div class="reveal-top">
-        <div class="reveal-copy">
+    <section class="panel reveal panel-round" aria-labelledby="reveal-status">
+      <div class="round-layout">
+        <div class="round-ad">
+          ${adCardHtml(round, { enter: true })}
+        </div>
+        <div class="round-vote reveal-vote">
           <p class="reveal-status is-correct" id="reveal-status" role="status">
             ${escapeHtml(reveal.correct)}
           </p>
-          <p class="answer-compare">
-            <strong>${escapeHtml(reveal.classAnswer)}:</strong> ${escapeHtml(answers[state.selected])}
-          </p>
+          <p class="answer-label">${escapeHtml(reveal.classAnswer)}</p>
+          <p class="answer-value">${escapeHtml(answers[state.selected])}</p>
+          <dl class="reveal-stack">
+            <div class="reveal-item">
+              <dt>${escapeHtml(reveal.feeling)}</dt>
+              <dd>${escapeHtml(round.feeling)}</dd>
+            </div>
+            <div class="reveal-item">
+              <dt>${escapeHtml(reveal.literalClaim)}</dt>
+              <dd>${escapeHtml(round.literalClaim)}</dd>
+            </div>
+            <div class="reveal-item">
+              <dt>${escapeHtml(reveal.evidence)}</dt>
+              <dd>${escapeHtml(round.evidence)}</dd>
+            </div>
+            <div class="reveal-item">
+              <dt>${escapeHtml(reveal.technique)}</dt>
+              <dd>${escapeHtml(techniques[round.technique] || round.technique)}</dd>
+            </div>
+            <div class="reveal-item">
+              <dt>${escapeHtml(reveal.verify)}</dt>
+              <dd>${escapeHtml(round.verify)}</dd>
+            </div>
+          </dl>
+          <div class="reveal-actions">
+            <button class="btn btn-primary" type="button" data-action="continue">${escapeHtml(continueLabel)}</button>
+          </div>
         </div>
-        <div class="reveal-ad-ref">
-          ${adCardHtml(round, { compact: true })}
-        </div>
-      </div>
-      <dl class="reveal-grid">
-        <div class="reveal-item reveal-item-wide">
-          <dt>${escapeHtml(reveal.feeling)}</dt>
-          <dd>${escapeHtml(round.feeling)}</dd>
-        </div>
-        <div class="reveal-item">
-          <dt>${escapeHtml(reveal.literalClaim)}</dt>
-          <dd>${escapeHtml(round.literalClaim)}</dd>
-        </div>
-        <div class="reveal-item">
-          <dt>${escapeHtml(reveal.evidence)}</dt>
-          <dd>${escapeHtml(round.evidence)}</dd>
-        </div>
-        <div class="reveal-item">
-          <dt>${escapeHtml(reveal.technique)}</dt>
-          <dd>${escapeHtml(techniques[round.technique] || round.technique)}</dd>
-        </div>
-        <div class="reveal-item">
-          <dt>${escapeHtml(reveal.verify)}</dt>
-          <dd>${escapeHtml(round.verify)}</dd>
-        </div>
-      </dl>
-      <div class="reveal-actions">
-        <button class="btn btn-primary" type="button" data-action="continue">${escapeHtml(continueLabel)}</button>
       </div>
     </section>
   `;
 
-  app.querySelector('[data-action="continue"]').focus();
+  app.querySelector('[data-action="continue"]').focus({ preventScroll: true });
 }
 
 function scrollToTop() {
@@ -276,6 +380,14 @@ function renderResults() {
   app.querySelector("#results-heading")?.setAttribute("tabindex", "-1");
   app.querySelector("#results-heading")?.focus({ preventScroll: true });
   scrollToTop();
+}
+
+function rerenderForTheme() {
+  if (!state.ui) return;
+  if (state.phase === "intro") renderIntro();
+  else if (state.phase === "choose") renderRound({ restoreVotes: true });
+  else if (state.phase === "reveal") renderReveal();
+  else if (state.phase === "results") renderResults();
 }
 
 function startGame() {
@@ -359,8 +471,13 @@ app.addEventListener("click", (event) => {
   }
 });
 
+window.addEventListener("themechange", () => {
+  rerenderForTheme();
+});
+
 async function init() {
   try {
+    initThemeSwitcher(document.getElementById("theme-switcher"));
     await loadData();
     document.getElementById("loading")?.remove();
     renderIntro();

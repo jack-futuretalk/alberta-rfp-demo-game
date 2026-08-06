@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="instagram">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,10 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Syne:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Libre+Baskerville:wght@700&family=Nunito:wght@400;600;700&family=Oswald:wght@600;700&family=Outfit:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/themes.css" />
   </head>
   <body>
     <a class="skip-link" href="#app">Skip to game</a>
@@ -20,7 +21,10 @@
 
     <header class="site-header">
       <p class="brand">Advertisement Claim Checker</p>
-      <p class="brand-sub" id="header-progress" hidden></p>
+      <div class="header-tools">
+        <p class="brand-sub" id="header-progress" hidden></p>
+        <div id="theme-switcher"></div>
+      </div>
     </header>
 
     <main id="app" class="app" tabindex="-1">
@@ -28,7 +32,7 @@
     </main>
 
     <footer class="site-footer">
-      <p>No login · No personal data collected · Draft demo build</p>
+      <p>No login · No personal data collected · Draft demo build · Switch looks anytime in the header</p>
     </footer>
 
     <script type="module" src="js/app.js"></script>

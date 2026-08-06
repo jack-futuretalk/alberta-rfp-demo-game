@@ -4,6 +4,16 @@ Bare-bones demo of the Alberta RFP Advertisement Claim Checker activity: a front
 
 Pairs with the microsite lesson *Food Literacy Through Advertising Analysis* (draft PDF in `docs/`).
 
+## Themes (client demo)
+
+Use the **Look** control in the header, or open with a query param:
+
+- [Instagram](?theme=instagram)
+- [TikTok](?theme=tiktok)
+- [Skeuomorphic](?theme=skeuo)
+
+The choice is remembered in `localStorage` for the next visit.
+
 ## Run locally
 
 Serve the folder over HTTP (fetch needs it for the JSON data files):
