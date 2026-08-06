@@ -8,11 +8,13 @@ Pairs with the microsite lesson *Food Literacy Through Advertising Analysis* (dr
 
 Use the **Look** control in the header, or open with a query param:
 
-- [Instagram](?theme=instagram)
-- [TikTok](?theme=tiktok)
-- [Skeuomorphic](?theme=skeuo)
+- [Instagram](https://jack-futuretalk.github.io/alberta-rfp-demo-game/?theme=instagram)
+- [TikTok](https://jack-futuretalk.github.io/alberta-rfp-demo-game/?theme=tiktok)
+- [Skeuomorphic](https://jack-futuretalk.github.io/alberta-rfp-demo-game/?theme=skeuo)
 
 The choice is remembered in `localStorage` for the next visit.
+
+**Live demo (GitHub Pages):** https://jack-futuretalk.github.io/alberta-rfp-demo-game/
 
 ## Run locally
 
