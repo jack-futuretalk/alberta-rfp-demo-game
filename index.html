@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Advertisement Claim Checker, spot claims in food and wellness ads." />
     <title>Advertisement Claim Checker</title>
+    <script>
+      // GitHub Pages project sites need a trailing slash or relative assets 404.
+      (function () {
+        var path = location.pathname;
+        if (path.slice(-1) !== "/" && !/\.[a-zA-Z0-9]+$/.test(path)) {
+          location.replace(path + "/" + location.search + location.hash);
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

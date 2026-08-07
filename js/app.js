@@ -2,6 +2,11 @@ import { getTheme, initThemeSwitcher } from "./theme.js";
 
 const CHOICE_KEYS = ["backed", "notBacked", "noClaim"];
 
+/** Resolve project-root assets reliably on GitHub Pages and locally. */
+function assetUrl(path) {
+  return new URL(`../${String(path).replace(/^\.\//, "")}`, import.meta.url).href;
+}
+
 const state = {
   ui: null,
   rounds: [],
@@ -25,8 +30,8 @@ function t(template, vars = {}) {
 
 async function loadData() {
   const [uiRes, roundsRes] = await Promise.all([
-    fetch("data/ui.en.json"),
-    fetch("data/rounds.en.json"),
+    fetch(assetUrl("data/ui.en.json")),
+    fetch(assetUrl("data/rounds.en.json")),
   ]);
   if (!uiRes.ok || !roundsRes.ok) {
     throw new Error("Could not load game data.");
@@ -162,14 +167,17 @@ function adCardHtml(round, { compact = false, enter = false } = {}) {
 
   let cardInner;
   if (round.image) {
+    const src = assetUrl(round.image);
     cardInner = `
       <img
         class="ad-media"
-        src="${escapeHtml(round.image)}"
+        src="${escapeHtml(src)}"
         alt="${escapeHtml(alt)}"
         width="360"
         height="480"
         decoding="async"
+        fetchpriority="high"
+        data-asset-src="${escapeHtml(src)}"
       />`;
   } else {
     const headline = round.headline
@@ -218,6 +226,21 @@ function restoreRuledOutButtons() {
   }
 }
 
+function wireAdImageRetries(root = app) {
+  root.querySelectorAll("img.ad-media[data-asset-src]").forEach((img) => {
+    img.addEventListener(
+      "error",
+      () => {
+        const retrySrc = img.dataset.assetSrc;
+        if (!retrySrc || img.dataset.retried === "1") return;
+        img.dataset.retried = "1";
+        img.src = `${retrySrc}${retrySrc.includes("?") ? "&" : "?"}retry=1`;
+      },
+      { once: true }
+    );
+  });
+}
+
 function renderRound({ restoreVotes = false } = {}) {
   const round = currentRound();
   const { round: copy, a11y } = state.ui;
@@ -252,6 +275,7 @@ function renderRound({ restoreVotes = false } = {}) {
     );
   }
 
+  wireAdImageRetries();
   app.querySelector(".btn-choice:not(:disabled)")?.focus({ preventScroll: true });
 }
 
@@ -333,6 +357,7 @@ function renderReveal() {
   `;
 
   app.querySelector('[data-action="continue"]').focus({ preventScroll: true });
+  wireAdImageRetries();
 }
 
 function scrollToTop() {
@@ -477,6 +502,10 @@ window.addEventListener("themechange", () => {
 
 async function init() {
   try {
+    document.documentElement.style.setProperty(
+      "--aisle-bg-image",
+      `url("${assetUrl("images/aisle-bg.jpg")}")`
+    );
     initThemeSwitcher(document.getElementById("theme-switcher"));
     await loadData();
     document.getElementById("loading")?.remove();

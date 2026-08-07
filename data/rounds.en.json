@@ -20,7 +20,7 @@
       "literalClaim": "Nothing checkable. The athlete appears with the product; no statement is made about sugar, caffeine, electrolytes, or performance.",
       "evidence": "Marketing that targets youth can influence food choices without offering facts. An athlete selfie is not a credible nutrition source. Check the Nutrition Facts table (sugar, sodium, serving size) and guidance from a registered dietitian or a government / public health agency.",
       "verify": "Nutrition Facts table + registered dietitian, Health Canada, or Alberta Health Services, not the brand account.",
-      "image": "images/round-1-v2.png"
+      "image": "images/round-1-v2.jpg"
     },
     {
       "id": "r2",
@@ -36,7 +36,7 @@
       "literalClaim": "The ad claims a 40% boost in focus that is clinically proven and guaranteed.",
       "evidence": "Health claims on packaging can influence food choices even when they overreach. A dramatic percentage with no named study is not reliable nutrition information. Compare similar cereals using Nutrition Facts tables, calories, sugar, sodium, and serving size all matter.",
       "verify": "Nutrition Facts table (watch serving size). Cross-check with Health Canada or a registered dietitian, not the box front.",
-      "image": "images/round-2-v2.png"
+      "image": "images/round-2-v2.jpg"
     },
     {
       "id": "r3",
@@ -52,7 +52,7 @@
       "literalClaim": "No product claim. The ad sells belonging while the brand sits in the scene.",
       "evidence": "Advertising can shape food and drink choices by selling identity, not nutrition. Soft sell makes no claim you can check. During adolescence, a stage of rapid growth, brands often target that need to belong. For real nutrition questions, use credible sources, not lifestyle ads.",
       "verify": "Ask what is said about the product versus the lifestyle. Credible sources: registered dietitians; government or public health agencies.",
-      "image": "images/round-3-v2.png"
+      "image": "images/round-3-v2.jpg"
     },
     {
       "id": "r4",
@@ -68,7 +68,7 @@
       "literalClaim": "The product is a source of calcium and vitamin D, which help maintain bones and teeth.",
       "evidence": "Nutrient function claims like this can be allowed in Canada when criteria are met. That matters for growth and development: adolescents need additional calcium and vitamin D to support bone growth. Still read the Nutrition Facts table, amount per serving depends on serving size, and compare sugar across similar products.",
       "verify": "Nutrition Facts table (calcium, vitamin D, sugar, serving size). Confirm with Health Canada nutrient claims guidance or a registered dietitian / public health agency.",
-      "image": "images/round-4-v2.png"
+      "image": "images/round-4-v2.jpg"
     },
     {
       "id": "r5",
@@ -84,7 +84,7 @@
       "literalClaim": "No claim is made. The product is placed in entertainment so the brand stays familiar.",
       "evidence": "Social media and entertainment marketing influence food choices by repetition, not evidence. Familiarity is not proof the drink supports growth or well-being. Check caffeine, sugar, sodium, and serving size on the Nutrition Facts table.",
       "verify": "Did anyone state a fact, or did the can just appear? Label + government / public health guidance, not the stream.",
-      "image": "images/round-5-v2.png"
+      "image": "images/round-5-v2.jpg"
     },
     {
       "id": "r6",
@@ -100,7 +100,7 @@
       "literalClaim": "No specific, checkable nutrition claim (no amounts, no named nutrients, no verified health outcome). \"Clean\" and \"fuel your body\" are brand voice.",
       "evidence": "Nutritional information is more reliable from registered dietitians and government or public health agencies than from a brand's social feed. \"Clean\" marketing has a commercial motive and is not a substitute for the Nutrition Facts table.",
       "verify": "Sort as brand marketing. Check ingredients and Nutrition Facts; compare with a registered dietitian or public health source.",
-      "image": "images/round-6-v2.png"
+      "image": "images/round-6-v2.jpg"
     },
     {
       "id": "r7",
@@ -116,7 +116,7 @@
       "literalClaim": "The joke mocks other ads. It does not offer a checkable claim about nutrition benefits.",
       "evidence": "Parody still sells a brand feeling. For sugar, calories, and serving size, and for what actually supports growth, use the Nutrition Facts table and credible public health sources, not the punchline.",
       "verify": "Was anything factual asserted? Label + Health Canada / Alberta Health Services / registered dietitian.",
-      "image": "images/round-7-v2.png"
+      "image": "images/round-7-v2.jpg"
     },
     {
       "id": "r8",
@@ -132,7 +132,7 @@
       "literalClaim": "The ad claims the tea flushes toxins in three days and implies personal transformation.",
       "evidence": "Food choices can be influenced by social media diet trends that include misinformation. \"Detox\" / \"flush toxins\" claims are not supported by credible evidence. Testimonials are not a substitute for registered dietitians or government / public health agencies.",
       "verify": "Health Canada or Dietitians of Canada on detox products. Prefer sources without a product to sell.",
-      "image": "images/round-8-v2.png"
+      "image": "images/round-8-v2.jpg"
     }
   ]
 }
